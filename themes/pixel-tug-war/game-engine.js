@@ -173,7 +173,8 @@ export function createGame(options = {}) {
   function restore(data) {
     if (!data || data.version !== 1 || !data.state || !Array.isArray(data.players)) return false;
     const age = now() - Number(data.savedAt);
-    if (!Number.isFinite(age) || age < 0 || age > 10 * 60_000) return false;
+    // Persisted server sessions may resume after short downtime; discard sessions older than a day.
+    if (!Number.isFinite(age) || age < 0 || age > 24 * 60 * 60_000) return false;
     if (!['playing', 'intermission'].includes(data.state.phase)) return false;
     if (!Number.isFinite(data.state.endsAt) || !Number.isFinite(data.state.position)) return false;
     for (const key of ['pushes', 'energy', 'wins', 'participants']) {
