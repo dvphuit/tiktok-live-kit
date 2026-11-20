@@ -6,7 +6,7 @@ A shared framework for building **interactive games / overlays for TikTok LIVE**
 
 The core is written once. Each topic (café, dance floor, fishing pond…) is a **theme** dropped into `themes/` and switched live from the control panel.
 
-The kit ships no ready-made themes, only the blank `themes/template` (2D) and `themes/template-3d` (3D, Three.js) to copy for your own topic. A theme's look comes from the assets you prepare (background, characters, GIFs, video, music).
+The kit includes an experimental playable game, **[Pixel Tug War](themes/pixel-tug-war/README.md)**, with a server-authoritative round engine, browser demo, and pixel-art overlay. The blank `themes/template` (2D) and `themes/template-3d` (3D, Three.js) remain available to copy for custom topics. A custom theme's look comes from the assets you prepare (background, characters, GIFs, video, music).
 
 | Doc | Contents |
 |---|---|
