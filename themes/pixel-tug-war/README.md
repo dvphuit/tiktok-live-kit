@@ -1,6 +1,6 @@
 # Pixel Tug War - TikTok LIVE Game
 
-Pixel-art tug-of-war contest implemented as a standalone theme. Core, provider and SDK files stay unchanged.
+Pixel-art tug-of-war contest implemented as a standalone theme. The generic server and Live SDK are extended to load an optional, theme-owned server runtime; existing themes remain compatible.
 
 ## Run
 
@@ -27,21 +27,26 @@ Each round lasts 60 seconds or ends early at a rope position of +/-0.9. A new ro
 - game-engine.js: team registration, command parsing, scoring, rules, cooldowns, round management, snapshots.
 - renderer.js: original procedural pixel-art canvas rendering and bounded particles.
 - index.html and style.css: 9:16 HTML HUD, scoreboards, leaderboard, status overlays.
-- main.js: Live SDK integration, demo bots and test buttons, local session restore.
+- server-game.js: authoritative Node game host, coalesced websocket updates, bounded effect dispatch and atomic persistence.
+- main.js: read-only LIVE overlay, Live SDK snapshots, and isolated client-side demo bots and test buttons.
 - theme.json and scene.json: framework theme metadata.
-- test/pixel-tug-war.test.js: game logic tests.
+- test/pixel-tug-war*.test.js: game logic, server host persistence and multi-overlay WebSocket integration tests.
 
 ## Verification
 
-Run pnpm test. Use the overlay demo controls to test RED/BLUE, PUSH, BOOST, GIFT, AUTO and RESET. AUTO is simulated inside the overlay; never stream with ?demo. Confirm mobile TikTok safe zones with ?safe and OBS output before publishing.
+Run pnpm test. Use the overlay demo controls to test RED/BLUE, PUSH, BOOST, GIFT, AUTO and RESET. AUTO is simulated inside the overlay; never stream with ?demo. Confirm mobile TikTok safe zones with ?safe and OBS output before publishing. The approximate safe-zone masks are not official TikTok measurements.
 
 ## MVP limitations
 
-- State lives in the browser tab, not the Node server. Multiple browser sources are not synchronized.
-- sessionStorage reload recovery is best-effort and valid for 10 minutes, and not a long-term durable database.
-- The 2D art is original procedural placeholder art, not a pixel-perfect extraction from the reference image.
+- LIVE game state is authoritative in the Node process and persisted atomically to `data/game-pixel-tug-war.json`. All overlay clients share a single match. Snapshots older than 24 hours are discarded on server restart.
+- `?demo` intentionally uses separate local state; it never affects the server or real LIVE viewers.
+- The 2D art is original procedural placeholder art, not a pixel-perfect extraction from the reference image. The HUD is reflowed to avoid the large native comment area.
 - Test events from the normal control panel currently simulate gifts; the built-in ?demo path simulates gameplay comments.
 - Font is loaded from Google Fonts when available; system fallbacks are provided.
+
+## Server authority
+
+Only live `chat` and `gift` events affect the authoritative game host. The shared kit already normalizes and deduplicates LIVE events. Every browser overlay receives the same `gameState` snapshots, while `gameEffect` messages carry visual-only particles and alerts. When a new overlay connects, `init.game` contains the latest snapshot. The Game Host writes an atomic checkpoint at most once every 5 seconds and always flushes on server shutdown or theme switch.
 
 ## Credits
 
