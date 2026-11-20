@@ -24,21 +24,27 @@
 .meter-knot { position:absolute; top:0; left:50%; font-size:47px; line-height:51px; color:#ffeaaa; text-shadow:3px 3px #7b5128; transform:translateX(-50%); transition:left .2s ease-out; }
 .meter-left,.meter-right { position:absolute; top:15px; font-size:23px; font-weight:900; text-shadow:2px 3px #26314a; } .meter-left { left:19px; } .meter-right { right:19px; }
 .battle-toast { position:absolute; top:846px; left:190px; width:700px; height:68px; border:6px solid #aa713d; background:#ffe4ad; color:#442a2d; box-shadow:0 5px #513849; display:flex; justify-content:center; align-items:center; font-size:28px; font-weight:900; text-align:center; text-transform:uppercase; }
-.skill-hud { position:absolute; left:112px; right:112px; top:1330px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
-.skill { height:115px; background:linear-gradient(#352a53,#1b193c); border:5px solid #f3c26a; box-shadow:inset 0 0 0 3px #6b416b,0 8px #111229; border-radius:10px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:8px; }
+.skill-hud { position:absolute; left:115px; right:115px; top:1174px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+.skill { height:50px; background:linear-gradient(#352a53,#1b193c); border:5px solid #f3c26a; box-shadow:inset 0 0 0 3px #6b416b,0 8px #111229; border-radius:10px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:8px; }
 .skill.center { border-color:#d486ff; } .skill:last-of-type { border-color:#87d9ff; }
-.skill b { font-size:21px; } .skill span { color:#f3eacb; font-size:16px; font-weight:700; }
-.energy { grid-column:1/-1; display:flex; height:15px; background:#202242; border:2px solid #b9d0f5; overflow:hidden; }
+.skill b { font-size:17px; } .skill span { color:#f3eacb; font-size:12px; font-weight:700; }
+.energy { grid-column:1/-1; display:flex; height:10px; background:#202242; border:2px solid #b9d0f5; overflow:hidden; }
 .energy .red-energy { height:100%; width:0; background:#f75e77; transition:width .2s; } .energy .blue-energy { height:100%; width:0; background:#58bdff; transition:width .2s; margin-left:auto; }
-.join-banner { position:absolute; left:125px; top:1520px; width:830px; border:5px solid #9d754e; background:#ffe7ba; color:#362b39; text-align:center; padding:14px 5px; box-shadow:0 5px #2b2a48; font-size:25px; font-weight:900; white-space:nowrap; }
+.join-banner { position:absolute; left:125px; top:1097px; width:830px; border:5px solid #9d754e; background:#ffe7ba; color:#362b39; text-align:center; padding:14px 5px; box-shadow:0 5px #2b2a48; font-size:25px; font-weight:900; white-space:nowrap; }
 .red-text { background:#da3053; color:#fff; padding:4px 7px; border-radius:5px; } .blue-text { background:#2978e3; color:#fff; padding:4px 7px; border-radius:5px; }
-.leaderboard { position:absolute; top:1635px; right:115px; width:395px; height:215px; background:linear-gradient(#242447ee,#121830ee); border:5px solid #efbf70; border-radius:10px; box-shadow:0 8px #0b1127; padding:9px 14px; }
-.board-title { text-align:center; color:#ffe8a3; font-size:20px; font-weight:900; border-bottom:2px solid #bc8b60; padding-bottom:5px; }
-.leaderboard ol { list-style:none; margin:8px 0; padding:0; } .leaderboard li { display:flex; justify-content:space-between; gap:8px; font-size:19px; font-weight:800; padding:4px 0; align-items:center; }
-.leaderboard .player { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:255px; } .leaderboard .team-dot { margin-right:8px; color:#ff7287; } .leaderboard .team-dot.blue { color:#6fc5ff; }
+.leaderboard { position:absolute; top:1395px; right:145px; width:230px; height:215px; background:linear-gradient(#242447ee,#121830ee); border:5px solid #efbf70; border-radius:10px; box-shadow:0 8px #0b1127; padding:9px 14px; }
+.board-title { text-align:center; color:#ffe8a3; font-size:17px; font-weight:900; border-bottom:2px solid #bc8b60; padding-bottom:5px; }
+.leaderboard ol { list-style:none; margin:8px 0; padding:0; } .leaderboard li { display:flex; justify-content:space-between; gap:5px; font-size:16px; font-weight:800; padding:4px 0; align-items:center; }
+.leaderboard .player { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:145px; } .leaderboard .team-dot { margin-right:8px; color:#ff7287; } .leaderboard .team-dot.blue { color:#6fc5ff; }
 .leaderboard .points { color:#ffe0a4; }
-.gift-notice { position:absolute; right:118px; top:1601px; color:#ffe49c; font-size:18px; font-weight:900; text-align:right; max-width:500px; text-shadow:2px 3px #161934; }
-.bottom-strip { position:absolute; left:113px; top:1860px; color:#c3ccea; font-size:18px; font-weight:900; letter-spacing:1px; white-space:nowrap; } .bottom-strip span { color:#ffd480; padding:0 8px; }
+.gift-notice { position:absolute; right:145px; top:1357px; color:#ffe49c; font-size:18px; font-weight:900; text-align:right; max-width:225px; text-shadow:2px 3px #161934; }
+.bottom-strip { display:none; position:absolute; left:113px; top:1860px; color:#c3ccea; font-size:18px; font-weight:900; letter-spacing:1px; white-space:nowrap; } .bottom-strip span { color:#ffd480; padding:0 8px; }
 .dev-controls { position:absolute; display:flex; z-index:50; left:108px; top:1060px; max-width:870px; flex-wrap:wrap; gap:9px; padding:12px; background:#0d153bc9; border:3px solid #fed080; border-radius:8px; }
 .dev-controls[hidden], .safe-outline[hidden] { display:none; } .dev-controls button { background:#f2d89c; color:#26304b; font-size:19px; border:3px solid #83593d; border-radius:5px; padding:8px 11px; font-weight:900; cursor:pointer; }
-.safe-outline { position:absolute; inset:240px 100px 160px; border:6px dashed #fd698d; pointer-events:none; z-index:60; } .safe-outline::after { content:'SAFE ZONE — Chat overlays bottom left'; position:absolute; bottom:0; left:0; font-size:24px; background:#17152c; color:#fff; }
+.safe-outline { position:absolute; inset:0; pointer-events:none; z-index:60; } .safe-mask { position:absolute; background:rgba(240,35,82,.27); border:2px dashed #ff708a; color:#fff9e8; font:900 17px/1.2 'Be Vietnam Pro',sans-serif; text-align:center; display:flex; align-items:center; justify-content:center; text-shadow:1px 2px #1b1538; }
+
+/* Readable pixel frames; minimal motion to stay OBS-friendly. */
+.score-card, .round-card, .skill, .leaderboard { outline:3px solid rgba(22,24,53,.8); outline-offset:3px; }
+.join-banner { border-radius:4px; }
+.hero-title h1 strong { animation: glowTitle 3s ease-in-out infinite alternate; }
+@keyframes glowTitle { from { filter:brightness(1); } to { filter:brightness(1.12); } }
