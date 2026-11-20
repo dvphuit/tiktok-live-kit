@@ -39,7 +39,7 @@
 .leaderboard .points { color:#ffe0a4; }
 .gift-notice { position:absolute; right:150px; top:1357px; color:#ffe49c; font-size:18px; font-weight:900; text-align:right; max-width:210px; text-shadow:2px 3px #161934; }
 .bottom-strip { display:none; position:absolute; left:113px; top:1860px; color:#c3ccea; font-size:18px; font-weight:900; letter-spacing:1px; white-space:nowrap; } .bottom-strip span { color:#ffd480; padding:0 8px; }
-.dev-controls { position:absolute; display:flex; z-index:50; left:108px; top:1060px; max-width:870px; flex-wrap:wrap; gap:9px; padding:12px; background:#0d153bc9; border:3px solid #fed080; border-radius:8px; }
+.dev-controls { position:absolute; display:flex; z-index:50; left:110px; top:1625px; max-width:570px; flex-wrap:wrap; gap:9px; padding:12px; background:#0d153bc9; border:3px solid #fed080; border-radius:8px; }
 .dev-controls[hidden], .safe-outline[hidden] { display:none; } .dev-controls button { background:#f2d89c; color:#26304b; font-size:19px; border:3px solid #83593d; border-radius:5px; padding:8px 11px; font-weight:900; cursor:pointer; }
 .safe-outline { position:absolute; inset:0; pointer-events:none; z-index:60; } .safe-mask { position:absolute; background:rgba(240,35,82,.27); border:2px dashed #ff708a; color:#fff9e8; font:900 17px/1.2 'Be Vietnam Pro',sans-serif; text-align:center; display:flex; align-items:center; justify-content:center; text-shadow:1px 2px #1b1538; }
 
