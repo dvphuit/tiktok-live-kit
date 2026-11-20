@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0a112b">
+  <title>Pixel Tug War — TikTok LIVE Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="world" aria-label="Đấu trường pixel kéo co"></canvas>
+
+  <header class="hero-title">
+    <div class="starline">✦  THE PIXEL ARENA  ✦</div>
+    <h1><span>PIXEL</span><strong>TUG WAR</strong></h1>
+    <div class="ribbon">⚔ LIVE BATTLE ⚔</div>
+  </header>
+
+  <section class="match-hud" aria-label="Tỉ số trận">
+    <div class="score-card team-red">
+      <div class="score-label">♛ ĐỘI ĐỎ</div>
+      <div class="score-value" id="red-score">0</div>
+      <div class="score-players"><span id="red-players">0</span> chiến binh</div>
+      <div class="team-wins">Thắng <span id="red-wins">0</span></div>
+    </div>
+    <div class="round-card">
+      <div class="round-name">ROUND <span id="round">1</span></div>
+      <div class="countdown" id="countdown">01:00</div>
+      <div class="round-caption" id="round-caption">KÉO CO!</div>
+    </div>
+    <div class="score-card team-blue">
+      <div class="score-label">♛ ĐỘI XANH</div>
+      <div class="score-value" id="blue-score">0</div>
+      <div class="score-players"><span id="blue-players">0</span> chiến binh</div>
+      <div class="team-wins">Thắng <span id="blue-wins">0</span></div>
+    </div>
+  </section>
+
+  <div class="meter" role="meter" aria-label="Lực kéo hai đội" aria-valuemin="-100" aria-valuemax="100" aria-valuenow="0">
+    <div class="meter-red" id="meter-red"></div>
+    <div class="meter-blue" id="meter-blue"></div>
+    <div class="meter-knot" id="meter-knot">◆</div>
+    <div class="meter-left">RED</div><div class="meter-right">BLUE</div>
+  </div>
+
+  <div class="battle-toast" id="battle-toast">⚔ BẮT ĐẦU TRẬN ĐẤU! ⚔</div>
+
+  <section class="skill-hud" aria-label="Năng lượng và kỹ năng">
+    <div class="skill"><b>💪 TĂNG LỰC</b><span>Comment PUSH để kéo</span></div>
+    <div class="skill center"><b>⚡ BOOST</b><span>100 năng lượng</span></div>
+    <div class="skill"><b>🛡 ĐỘI XANH</b><span>Đối đầu ĐỘI ĐỎ</span></div>
+    <div class="energy"><div class="red-energy" id="red-energy"></div><div class="blue-energy" id="blue-energy"></div></div>
+  </section>
+
+  <div class="join-banner">💬 Comment <b class="red-text">RED</b> hoặc <b class="blue-text">BLUE</b> để gia nhập!</div>
+
+  <aside class="leaderboard">
+    <div class="board-title">🏆 TOP CHIẾN BINH</div>
+    <ol id="leaders"><li>Chưa có người chơi</li></ol>
+  </aside>
+
+  <div class="gift-notice" id="gift-notice" aria-live="polite"></div>
+  <footer class="bottom-strip">⚔ 60 GIÂY / VÒNG <span>•</span> PUSH MỖI 3 GIÂY <span>•</span> GIFT CHỈ TẠO HIỆU ỨNG</footer>
+
+  <div class="dev-controls" id="dev-controls" hidden>
+    <button type="button" data-demo="red">+ RED</button>
+    <button type="button" data-demo="blue">+ BLUE</button>
+    <button type="button" data-demo="push">PUSH</button>
+    <button type="button" data-demo="boost">BOOST</button>
+    <button type="button" data-demo="gift">GIFT</button>
+    <button type="button" data-demo="auto">AUTO</button>
+    <button type="button" data-demo="reset">RESET</button>
+  </div>
+  <div class="safe-outline" hidden aria-hidden="true"></div>
+</div>
+<script src="/sdk/live-sdk.js"></script>
+<script type="module" src="main.js"></script>
+</body>
+</html>
