@@ -6,7 +6,7 @@ Bộ khung chung để làm **game / overlay tương tác cho TikTok LIVE**. Ng�
 
 Lõi viết một lần. Mỗi chủ đề (quán cà phê, sàn nhảy, hồ câu cá…) là một **theme** cắm vào thư mục `themes/`, đổi ngay trên bảng điều khiển.
 
-Kit không kèm theme làm sẵn, chỉ có khung trống `themes/template` (2D) và `themes/template-3d` (3D, Three.js) để chép ra làm chủ đề của mình. Vẻ đẹp của theme đến từ asset (ảnh nền, nhân vật, GIF, video, nhạc) do bạn chuẩn bị.
+Kit hiện có game thử nghiệm **[Pixel Tug War](themes/pixel-tug-war/README.md)** với bộ máy trận đấu chạy trên server, chế độ demo và overlay pixel-art. Hai khung trống `themes/template` (2D) và `themes/template-3d` (3D, Three.js) vẫn có sẵn để tạo chủ đề riêng. Vẻ đẹp của theme tự làm phụ thuộc vào asset (ảnh nền, nhân vật, GIF, video, nhạc) do bạn chuẩn bị.
 
 | Tài liệu | Nội dung |
 |---|---|
