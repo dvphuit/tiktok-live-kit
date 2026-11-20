@@ -1,0 +1,72 @@
+{
+  "name": "Pixel Tug War",
+  "description": "Game kéo co pixel-art: bình luận RED/BLUE để vào đội, PUSH mỗi 3 giây và BOOST khi đầy năng lượng.",
+  "width": 1080,
+  "height": 1920,
+  "actions": [
+    {
+      "id": "celebrate",
+      "label": "Quà tặng: pháo sáng",
+      "icon": "✨",
+      "description": "Quà kích hoạt hiệu ứng ăn mừng, không tăng lực kéo",
+      "steps": []
+    }
+  ],
+  "rules": {
+    "joinMode": "all",
+    "joinKeywords": [
+      "red",
+      "blue"
+    ],
+    "bigGiftCoins": 100,
+    "giftTiers": [
+      {
+        "minCoins": 1,
+        "action": "celebrate",
+        "label": "Hiệu ứng chúc mừng"
+      }
+    ],
+    "giftOverrides": [],
+    "chatCommands": []
+  },
+  "characters": [],
+  "npcs": [],
+  "animations": {},
+  "voice": {
+    "enabled": false,
+    "voice": "vi-VN-HoaiMyNeural",
+    "giftMinCoins": 100000,
+    "join": [],
+    "chat": [],
+    "gift": [],
+    "bigGift": [],
+    "follow": []
+  },
+  "hud": {
+    "counters": false,
+    "board": false,
+    "ticker": false,
+    "goal": false,
+    "tiers": false,
+    "giftCard": false
+  },
+  "periodic": {
+    "items": []
+  },
+  "prompts": {
+    "items": []
+  },
+  "sounds": {},
+  "reactions": {},
+  "goals": [],
+  "titles": [],
+  "settings": [
+    {
+      "id": "voiceEnabled",
+      "label": "Giọng đọc tắt mặc định",
+      "type": "toggle",
+      "default": false
+    }
+  ],
+  "text": {}
+}
