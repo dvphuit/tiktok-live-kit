@@ -15,7 +15,6 @@ let lastBoardSignature = '';
 let fakeSeq = 0;
 let autoTimer = null;
 let lastUiAt = 0;
-let previousFrame = 0;
 const fallbackState = {
   phase: 'waiting', round: 1, endsAt: Date.now(),
   position: 0, winner: null,
@@ -157,7 +156,30 @@ if (demoMode) {
   for (let i = 0; i < 9; i++) fakeUser('blue');
   demoAction('auto');
 }
-if (params.has('safe')) document.querySelector('.safe-outline').hidden = false;
+if (params.has('safe')) {
+  // Same approximate masks documented in the shared Kit.safe API (1080x1920).
+  // The mobile app can change its UI; verify on a real device before streaming.
+  const layer = document.querySelector('.safe-outline');
+  layer.hidden = false;
+  const blocked = [
+    { x: 0, y: 0, w: 1080, h: 240, label: 'Header TikTok' },
+    { x: 0, y: 240, w: 100, h: 1010, label: 'Crop' },
+    { x: 980, y: 240, w: 100, h: 1060, label: 'Crop' },
+    { x: 0, y: 1250, w: 720, h: 510, label: 'Bình luận LIVE' },
+    { x: 950, y: 1300, w: 130, h: 460, label: 'Tim' },
+    { x: 0, y: 1760, w: 1080, h: 160, label: 'Thanh điều khiển TikTok' },
+  ];
+  for (const zone of blocked) {
+    const mask = document.createElement('div');
+    mask.className = 'safe-mask';
+    Object.assign(mask.style, {
+      left: zone.x + 'px', top: zone.y + 'px',
+      width: zone.w + 'px', height: zone.h + 'px',
+    });
+    mask.textContent = zone.label;
+    layer.append(mask);
+  }
+}
 
 function frame(t) {
   const s = demoMode ? demoGame.state : gameView?.state || fallbackState;
@@ -167,7 +189,6 @@ function frame(t) {
     updateHUD();
     lastUiAt = t;
   }
-  previousFrame = t;
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
