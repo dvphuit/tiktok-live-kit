@@ -1,0 +1,80 @@
+name: Pixel Tug War CI
+
+on:
+  push:
+    branches:
+      - feat/pixel-tug-war-game
+  pull_request:
+    paths:
+      - 'themes/pixel-tug-war/**'
+      - 'test/pixel-tug-war*.test.js'
+      - 'src/server.js'
+      - 'public/sdk/live-sdk.js'
+      - '.github/workflows/pixel-tug-war.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: JavaScript syntax validation
+        run: |
+          node --check src/server.js
+          node --check public/sdk/live-sdk.js
+          node --check themes/pixel-tug-war/game-engine.js
+          node --check themes/pixel-tug-war/server-game.js
+          node --check themes/pixel-tug-war/renderer.js
+          node --check themes/pixel-tug-war/main.js
+      - name: Unit tests
+        run: pnpm test
+      - name: Run HTTP smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          THEME=pixel-tug-war node src/server.js > /tmp/pixel-tug-war-server.log 2>&1 &
+          PID=$!
+          trap 'kill "$PID" 2>/dev/null || true; cat /tmp/pixel-tug-war-server.log' EXIT
+          for i in $(seq 1 40); do
+            if curl -fsS http://127.0.0.1:3939/api/health > /tmp/game-health.json; then break; fi
+            sleep 0.25
+          done
+          node -e "const x=require('/tmp/game-health.json'); if(x.theme!=='pixel-tug-war') process.exit(1)"
+          curl -fsS http://127.0.0.1:3939/overlay -o /dev/null
+          curl -fsS http://127.0.0.1:3939/themes/pixel-tug-war/main.js -o /dev/null
+          curl -fsS http://127.0.0.1:3939/themes/pixel-tug-war/server-game.js -o /dev/null
+
+      - name: Install browser for visual smoke testing
+        run: pnpm dlx playwright@1.56.1 install --with-deps chromium
+      - name: Capture overlay screenshots
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          THEME=pixel-tug-war node src/server.js > /tmp/pixel-tug-war-visual.log 2>&1 &
+          PID=$!
+          trap 'kill "$PID" 2>/dev/null || true; cat /tmp/pixel-tug-war-visual.log' EXIT
+          for i in $(seq 1 40); do
+            if curl -fsS http://127.0.0.1:3939/api/health >/dev/null; then break; fi
+            sleep 0.25
+          done
+          pnpm dlx playwright@1.56.1 screenshot --browser chromium --viewport-size="1080,1920" --wait-for-timeout=2000 "http://127.0.0.1:3939/overlay?demo" artifacts/demo.png
+          pnpm dlx playwright@1.56.1 screenshot --browser chromium --viewport-size="1080,1920" --wait-for-timeout=1000 "http://127.0.0.1:3939/overlay?safe" artifacts/safe-zone.png
+          test -s artifacts/demo.png
+          test -s artifacts/safe-zone.png
+      - name: Upload visual QA screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: pixel-tug-war-ui
+          path: artifacts/*.png
+          retention-days: 14

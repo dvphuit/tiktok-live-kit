@@ -1,0 +1,9 @@
+{
+  "renderer": "canvas",
+  "fps": 30,
+  "background": "",
+  "fill": {
+    "rows": 0
+  },
+  "maxTags": 0
+}

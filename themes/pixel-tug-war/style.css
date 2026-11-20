@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;700;800;900&family=Press+Start+2P&display=swap');
+:root { --gold:#ffda79; --cream:#ffedc1; --night:#0b132e; --red:#e73755; --blue:#2478e7; font-family:'Be Vietnam Pro',system-ui,sans-serif; color:#fff; }
+* { box-sizing:border-box; } body { background:#080e23; margin:0; overflow:hidden; }
+#stage { width:1080px; height:1920px; position:absolute; isolation:isolate; overflow:hidden; transform-origin:top left; background:#121b3e; }
+#world { position:absolute; inset:0; display:block; width:100%; height:100%; image-rendering:pixelated; }
+.hero-title { position:absolute; top:255px; width:100%; text-align:center; pointer-events:none; filter:drop-shadow(0 6px #171b3a) drop-shadow(0 12px #111229); }
+.starline { color:#fee4a0; font-size:27px; font-weight:900; letter-spacing:8px; text-shadow:3px 3px #202548; }
+.hero-title h1 { margin:5px auto 0; line-height:1.05; font-family:'Press Start 2P',monospace; font-size:71px; color:#ffe17a; -webkit-text-stroke:2px #7d342c; text-shadow:5px 6px #ae4c32,10px 11px #281a45; }
+.hero-title h1 span,.hero-title h1 strong { display:block; } .hero-title h1 strong { font-size:84px; letter-spacing:-4px; }
+.ribbon { display:inline-block; margin-top:15px; padding:12px 30px; background:#af2340; border:5px solid #ffdb83; box-shadow:0 7px #54203a; font-weight:900; font-size:27px; border-radius:5px; letter-spacing:4px; }
+.match-hud { position:absolute; top:548px; left:100px; right:100px; display:grid; grid-template-columns:1fr 0.77fr 1fr; gap:12px; align-items:center; filter:drop-shadow(0 9px #101630); }
+.score-card,.round-card { border:5px solid #ffe39c; border-radius:15px; box-shadow:inset 0 0 0 4px #352c42; text-align:center; padding:18px 8px; min-height:154px; }
+.team-red { background:linear-gradient(#c52249,#761c3f); } .team-blue { background:linear-gradient(#1769cb,#0d347e); }
+.round-card { background:linear-gradient(#2b3156,#161d43); border-color:#b3b9db; }
+.score-label { font-weight:900; font-size:26px; white-space:nowrap; } .score-value { font:900 49px/1.1 'Be Vietnam Pro',sans-serif; padding-top:7px; font-variant-numeric:tabular-nums; }
+.score-players,.team-wins { font-size:20px; font-weight:700; }
+.team-wins { color:#ffe9a5; }
+.round-name { font-weight:900; font-size:25px; } .countdown { font-weight:900; font-size:50px; line-height:1.3; font-variant-numeric:tabular-nums; }
+.round-caption { font-size:17px; color:var(--gold); font-weight:900; }
+.meter { position:absolute; left:112px; top:740px; width:856px; height:72px; border:8px solid #fbe5ae; border-radius:40px; overflow:hidden; display:flex; box-shadow:0 7px 0 #1e2047, inset 0 0 0 5px #0b1632; background:#293357; }
+.meter-red,.meter-blue { height:100%; transition:width .2s ease-out; }
+.meter-red { background:linear-gradient(#fa6f82,#c5284e); width:50%; }
+.meter-blue { background:linear-gradient(#5cb5ff,#1965cc); width:50%; flex:1; }
+.meter-knot { position:absolute; top:0; left:50%; font-size:47px; line-height:51px; color:#ffeaaa; text-shadow:3px 3px #7b5128; transform:translateX(-50%); transition:left .2s ease-out; }
+.meter-left,.meter-right { position:absolute; top:15px; font-size:23px; font-weight:900; text-shadow:2px 3px #26314a; } .meter-left { left:19px; } .meter-right { right:19px; }
+.battle-toast { position:absolute; top:846px; left:190px; width:700px; height:68px; border:6px solid #aa713d; background:#ffe4ad; color:#442a2d; box-shadow:0 5px #513849; display:flex; justify-content:center; align-items:center; font-size:28px; font-weight:900; text-align:center; text-transform:uppercase; }
+.skill-hud { position:absolute; left:115px; right:115px; top:1174px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+.skill { height:50px; background:linear-gradient(#352a53,#1b193c); border:5px solid #f3c26a; box-shadow:inset 0 0 0 3px #6b416b,0 8px #111229; border-radius:10px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:8px; }
+.skill.center { border-color:#d486ff; } .skill:last-of-type { border-color:#87d9ff; }
+.skill b { font-size:17px; } .skill span { color:#f3eacb; font-size:12px; font-weight:700; }
+.energy { grid-column:1/-1; display:flex; height:10px; background:#202242; border:2px solid #b9d0f5; overflow:hidden; }
+.energy .red-energy { height:100%; width:0; background:#f75e77; transition:width .2s; } .energy .blue-energy { height:100%; width:0; background:#58bdff; transition:width .2s; margin-left:auto; }
+.join-banner { position:absolute; left:125px; top:1097px; width:830px; border:5px solid #9d754e; background:#ffe7ba; color:#362b39; text-align:center; padding:14px 5px; box-shadow:0 5px #2b2a48; font-size:25px; font-weight:900; white-space:nowrap; }
+.red-text { background:#da3053; color:#fff; padding:4px 7px; border-radius:5px; } .blue-text { background:#2978e3; color:#fff; padding:4px 7px; border-radius:5px; }
+.leaderboard { position:absolute; top:1395px; right:130px; width:220px; height:215px; background:linear-gradient(#242447ee,#121830ee); border:5px solid #efbf70; border-radius:10px; box-shadow:0 8px #0b1127; padding:9px 14px; }
+.board-title { text-align:center; color:#ffe8a3; font-size:17px; font-weight:900; border-bottom:2px solid #bc8b60; padding-bottom:5px; }
+.leaderboard ol { list-style:none; margin:8px 0; padding:0; } .leaderboard li { display:flex; justify-content:space-between; gap:5px; font-size:16px; font-weight:800; padding:4px 0; align-items:center; }
+.leaderboard .player { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:145px; } .leaderboard .team-dot { margin-right:8px; color:#ff7287; } .leaderboard .team-dot.blue { color:#6fc5ff; }
+.leaderboard .points { color:#ffe0a4; }
+.gift-notice { position:absolute; right:150px; top:1357px; color:#ffe49c; font-size:18px; font-weight:900; text-align:right; max-width:210px; text-shadow:2px 3px #161934; }
+.bottom-strip { display:none; position:absolute; left:113px; top:1860px; color:#c3ccea; font-size:18px; font-weight:900; letter-spacing:1px; white-space:nowrap; } .bottom-strip span { color:#ffd480; padding:0 8px; }
+.dev-controls { position:absolute; display:flex; z-index:50; left:110px; top:1625px; max-width:570px; flex-wrap:wrap; gap:9px; padding:12px; background:#0d153bc9; border:3px solid #fed080; border-radius:8px; }
+.dev-controls[hidden], .safe-outline[hidden] { display:none; } .dev-controls button { background:#f2d89c; color:#26304b; font-size:19px; border:3px solid #83593d; border-radius:5px; padding:8px 11px; font-weight:900; cursor:pointer; }
+.safe-outline { position:absolute; inset:0; pointer-events:none; z-index:60; } .safe-mask { position:absolute; background:rgba(240,35,82,.27); border:2px dashed #ff708a; color:#fff9e8; font:900 17px/1.2 'Be Vietnam Pro',sans-serif; text-align:center; display:flex; align-items:center; justify-content:center; text-shadow:1px 2px #1b1538; }
+
+/* Readable pixel frames; minimal motion to stay OBS-friendly. */
+.score-card, .round-card, .skill, .leaderboard { outline:3px solid rgba(22,24,53,.8); outline-offset:3px; }
+.join-banner { border-radius:4px; }
+.hero-title h1 strong { animation: glowTitle 3s ease-in-out infinite alternate; }
+@keyframes glowTitle { from { filter:brightness(1); } to { filter:brightness(1.12); } }

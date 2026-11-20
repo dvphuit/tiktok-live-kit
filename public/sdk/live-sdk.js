@@ -8,6 +8,8 @@
 //   Live.on('command',  (e) => {})   lệnh chat đã khớp luật: e.action
 //   Live.on('follow' | 'share' | 'title' | 'goal' | 'streamEnd', (e) => {})
 //   Live.on('state',    (s) => {})   s.viewers, s.totals, s.top, s.goals
+//   Live.on('gameState',(game) => {}) optional server-authoritative game snapshot
+//   Live.on('gameEffect',(effect) => {}) optional transient animation event
 //   Live.on('reset',    () => {})    bảng điều khiển bấm "Phiên mới"
 //   Live.on('settings', (v) => {})   cài đặt riêng của theme (khai báo "settings" trong theme.json) vừa đổi
 //   Live.on('*',        (e) => {})   mọi sự kiện
@@ -47,9 +49,11 @@
         Live.settings = msg.settings || {};
         Live.connected = true;
         banner(false);
-        Live.emit('ready', { theme: msg.theme, players: msg.players || [], state: msg.state, guide: msg.guide });
+        Live.emit('ready', { theme: msg.theme, players: msg.players || [], state: msg.state, guide: msg.guide, game: msg.game || null });
         Live.emit('state', msg.state);
-      } else if (msg.type === 'event') Live.emit(msg.ev.kind, msg.ev);
+      } else if (msg.type === 'gameState') Live.emit('gameState', msg.game);
+      else if (msg.type === 'gameEffect') Live.emit('gameEffect', msg.effect);
+      else if (msg.type === 'event') Live.emit(msg.ev.kind, msg.ev);
       else if (msg.type === 'state') { Live.state = msg; Live.emit('state', msg); }
       else if (msg.type === 'reset') Live.emit('reset', {});
       else if (msg.type === 'guide') Live.emit('guide', msg);
